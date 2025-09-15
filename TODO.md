@@ -1,23 +1,14 @@
 # Xira - Task Management Application TODO
 
 ## Backend Tasks
-- [x] Create Spring Boot project structure
-- [x] Implement Task model with JPA entities
-- [x] Create TaskRepository with JPA queries
-- [x] Implement TaskService with business logic
-- [x] Create TaskController with REST endpoints
-- [ ] Add database configuration (H2/PostgreSQL)
+- [ ] Add models for db stuff
+- [ ] Add repos for db stuff
 - [ ] Add input validation and error handling
 - [ ] Implement unit tests for services and controllers
 - [ ] Add API documentation with Swagger
 - [ ] Configure CORS for frontend integration
 
 ## Frontend Tasks
-- [x] Restructure React project with components and pages
-- [x] Create TaskList component with full CRUD operations
-- [x] Create Dashboard page layout
-- [x] Update App.jsx to use new structure
-- [x] Style components with CSS
 - [ ] Add responsive design improvements
 - [ ] Implement loading states and error handling
 - [ ] Add form validation
@@ -25,7 +16,6 @@
 - [ ] Add routing with React Router
 
 ## Database & Infrastructure
-- [ ] Set up PostgreSQL database
 - [ ] Create Docker configuration for database
 - [ ] Add database migrations
 - [ ] Configure different environments (dev, prod)
@@ -59,6 +49,18 @@
 - [x] Create organized folder structure for backend
 - [x] Create organized folder structure for frontend
 - [x] Implement basic Task management system
+- [x] Create Spring Boot project structure
+- [x] Implement Task model with JPA entities
+- [x] Create TaskRepository with JPA queries
+- [x] Implement TaskService with business logic
+- [x] Create TaskController with REST endpoints
+- [x] Add database configuration (H2/PostgreSQL)
+- [x] Restructure React project with components and pages
+- [x] Create TaskList component with full CRUD operations
+- [x] Create Dashboard page layout
+- [x] Update App.jsx to use new structure
+- [x] Style components with CSS
+- [x] Set up PostgreSQL database
 
 ---
 
