@@ -25,11 +25,11 @@ CREATE TABLE IF NOT EXISTS "project_users" (
 CREATE TABLE IF NOT EXISTS "tasks" (
 	"id" serial NOT NULL UNIQUE,
 	"name" varchar(255) NOT NULL,
-	"description " varchar(255) NOT NULL,
+	"description" varchar(255) NOT NULL,
 	"project_id" bigint NOT NULL,
 	"assignee_id" bigint,
-	"status " varchar(20) NOT NULL DEFAULT 'TO_DO',
-	"priority " varchar(20) NOT NULL DEFAULT 'MEDIUM',
+	"status" varchar(20) NOT NULL DEFAULT 'TO_DO',
+	"priority" varchar(20) NOT NULL DEFAULT 'MEDIUM',
 	"created_at" timestamp with time zone NOT NULL DEFAULT now(),
 	PRIMARY KEY ("id")
 );
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS "board_columns" (
 	"id" serial NOT NULL UNIQUE,
 	"project_id" bigint NOT NULL,
 	"name" varchar(50) NOT NULL,
-	"position " bigint NOT NULL,
+	"position" bigint NOT NULL,
 	PRIMARY KEY ("id")
 );
 

@@ -20,7 +20,6 @@ public class TaskService {
 
     public Task createTask(Task task) {
         task.setCreatedAt(LocalDateTime.now());
-        task.setUpdatedAt(LocalDateTime.now());
         return taskRepository.save(task);
     }
 
@@ -28,10 +27,8 @@ public class TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
         
-        task.setTitle(taskDetails.getTitle());
+        task.setName(taskDetails.getName());
         task.setDescription(taskDetails.getDescription());
-        task.setCompleted(taskDetails.getCompleted());
-        task.setUpdatedAt(LocalDateTime.now());
         
         return taskRepository.save(task);
     }
@@ -42,7 +39,4 @@ public class TaskService {
         taskRepository.delete(task);
     }
 
-    public List<Task> getTasksByStatus(Boolean completed) {
-        return taskRepository.findByCompletedOrderByCreatedAtDesc(completed);
-    }
 }

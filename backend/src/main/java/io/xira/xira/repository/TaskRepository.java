@@ -8,8 +8,9 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    
-    List<Task> findByCompletedOrderByCreatedAtDesc(Boolean completed);
-    
+      
     List<Task> findAllByOrderByCreatedAtDesc();
+
+    List<Task> findByProjectId(Long projectId); // Find tasks by project
+    List<Task> findByAssigneeId(Long assigneeId); // Find tasks assigned to a user
 }
