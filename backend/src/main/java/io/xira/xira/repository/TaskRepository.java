@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task, Integer> {
       
     List<Task> findAllByOrderByCreatedAtDesc();
 
-    List<Task> findByProjectId(Long projectId); // Find tasks by project
-    List<Task> findByAssigneeId(Long assigneeId); // Find tasks assigned to a user
+    List<Task> findByProjectId(Integer projectId); // Find tasks by project
+    List<Task> findByAssigneeId(Integer assigneeId); // Find tasks assigned to a user
 }

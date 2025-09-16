@@ -1,17 +1,17 @@
 package io.xira.xira.service;
 
-import io.xira.xira.dto.TaskDTO;
+//import io.xira.xira.dto.TaskDTO;
 import io.xira.xira.model.Task;
-import io.xira.xira.model.Project;
-import io.xira.xira.model.User;
+//import io.xira.xira.model.Project;
+//import io.xira.xira.model.User;
 import io.xira.xira.repository.TaskRepository;
 import io.xira.xira.repository.ProjectRepository;
 import io.xira.xira.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -60,7 +60,7 @@ public class TaskService {
         return taskRepository.save(task);
     }*/
 
-    public Task updateTask(Long id, Task taskDetails) {
+    public Task updateTask(Integer id, Task taskDetails) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
         
@@ -70,7 +70,7 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public void deleteTask(Long id) {
+    public void deleteTask(Integer id) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
         taskRepository.delete(task);

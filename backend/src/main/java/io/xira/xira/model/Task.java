@@ -15,10 +15,10 @@ public class Task {
     private String name;
 
     @Column(nullable = false)
-    private Integer project_id;
+    private Integer projectId;
 
     @Column(nullable = false)
-    private Integer assignee_id;
+    private Integer assigneeId;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -33,13 +33,13 @@ public class Task {
     private String priority;
 
     // Constructors
-    public Task(Integer id, String name, String description, Integer project_id, Integer assignee_id, String status,
+    public Task(Integer id, String name, String description, Integer projectId, Integer assigneeId, String status,
             String priority) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.project_id = project_id;
-        this.assignee_id = assignee_id;
+        this.projectId = projectId;
+        this.assigneeId = assigneeId;
         this.status = status;
         this.priority = priority;
         this.createdAt = LocalDateTime.now();
@@ -71,19 +71,19 @@ public class Task {
     }
 
     public Integer getProject_id() {
-        return project_id;
+        return projectId;
     }
 
-    public void setProject_id(Integer project_id) {
-        this.project_id = project_id;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public Integer getAssignee_id() {
-        return assignee_id;
+    public Integer getAssigneeId() {
+        return assigneeId;
     }
 
-    public void setAssignee_id(Integer assignee_id) {
-        this.assignee_id = assignee_id;
+    public void setAssigneeId(Integer assigneeId) {
+        this.assigneeId = assigneeId;
     }
 
     public String getStatus() {
