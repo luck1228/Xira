@@ -2,7 +2,6 @@ package io.xira.xira.controller;
 
 import io.xira.xira.model.Task;
 import io.xira.xira.service.TaskService;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
