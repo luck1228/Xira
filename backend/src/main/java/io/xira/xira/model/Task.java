@@ -33,17 +33,7 @@ public class Task {
     private String priority;
 
     // Constructors
-    public Task(Integer id, String name, String description, Integer projectId, Integer assigneeId, String status,
-            String priority) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.projectId = projectId;
-        this.assigneeId = assigneeId;
-        this.status = status;
-        this.priority = priority;
-        this.createdAt = LocalDateTime.now();
-    }
+    public Task() {}
 
     // Getters and Setters
     public Integer getId() {

@@ -14,9 +14,9 @@ public class TaskDTO {
     private String description;
 
     @NotNull(message = "Project ID is required")
-    private Long projectId;
+    private Integer projectId;
 
-    private Long assigneeId; // optional
+    private Integer assigneeId; // optional
 
     private String status; // optional
     private String priority; // optional
@@ -38,19 +38,19 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public Long getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Long projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 
-    public Long getAssigneeId() {
+    public Integer getAssigneeId() {
         return assigneeId;
     }
 
-    public void setAssigneeId(Long assigneeId) {
+    public void setAssigneeId(Integer assigneeId) {
         this.assigneeId = assigneeId;
     }
 
