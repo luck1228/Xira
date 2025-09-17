@@ -28,15 +28,7 @@ public class User {
     // Constructors
     public User() {
         this.createdAt = LocalDateTime.now();
-    }
-
-    public User(Integer id, String username, String password, String email, String role, LocalDateTime createdAt) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-        this.createdAt = createdAt;
+        this.role = "USER"; // Default role
     }
 
     // Getters and Setters
