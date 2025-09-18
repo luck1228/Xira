@@ -1,8 +1,6 @@
 # Xira - Task Management Application TODO
 
 ## Backend Tasks
-- [ ] Add models for db stuff
-- [ ] Add repos for db stuff
 - [ ] Add input validation and error handling
 - [ ] Implement unit tests for services and controllers
 - [ ] Add API documentation with Swagger
@@ -16,9 +14,6 @@
 - [ ] Add routing with React Router
 
 ## Database & Infrastructure
-- [ ] Create Docker configuration for database
-- [ ] Add database migrations
-- [ ] Configure different environments (dev, prod)
 - [ ] Set up database seeding for testing
 
 ## DevOps & Deployment
@@ -61,6 +56,11 @@
 - [x] Update App.jsx to use new structure
 - [x] Style components with CSS
 - [x] Set up PostgreSQL database
+- [x] Add models for db stuff
+- [x] Add repos for db stuff
+- [x] Create Docker configuration for database
+- [x] Add database migrations
+- [x] Configure different environments (dev, prod)
 
 ---
 
