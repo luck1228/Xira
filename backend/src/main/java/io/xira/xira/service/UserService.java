@@ -28,6 +28,7 @@ public class UserService {
     public User createUser(UserDTO dto) {
         User user = new User();
         user.setUsername(dto.getUsername());
+        user.setPassword(dto.getPassword());
         user.setEmail(dto.getEmail());
         user.setCreatedAt(LocalDateTime.now());
 
