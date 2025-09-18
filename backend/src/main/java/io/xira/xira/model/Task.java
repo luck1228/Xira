@@ -17,7 +17,7 @@ public class Task {
     @Column(nullable = false)
     private Integer projectId;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer assigneeId;
 
     @Column(name = "created_at")
