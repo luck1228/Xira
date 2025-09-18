@@ -1,9 +1,10 @@
 package io.xira.xira.controller;
 
+import io.xira.xira.dto.TaskDTO;
 import io.xira.xira.model.Task;
 import io.xira.xira.service.TaskService;
+import jakarta.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +14,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
-    @Autowired
-    private TaskService taskService;
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping
     public List<Task> getAllTasks() {
@@ -22,8 +26,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
-        return taskService.createTask(task);
+    public Task createTask(@Valid @RequestBody TaskDTO taskDTO) {
+        return taskService.createTask(taskDTO);
     }
 
     @PutMapping("/{id}")
