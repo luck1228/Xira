@@ -3,7 +3,7 @@ import './TaskList.css';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState({ title: '', description: '' });
+  const [newTask, setNewTask] = useState({ name: '', description: '' });
   const [loading, setLoading] = useState(true);
 
   const API_BASE_URL = 'http://localhost:8080/api/tasks';
@@ -26,7 +26,7 @@ const TaskList = () => {
 
   const createTask = async (e) => {
     e.preventDefault();
-    if (!newTask.title.trim()) return;
+    if (!newTask.name.trim()) return;
 
     try {
       const response = await fetch(API_BASE_URL, {
@@ -38,7 +38,7 @@ const TaskList = () => {
       });
       
       if (response.ok) {
-        setNewTask({ title: '', description: '' });
+        setNewTask({ name: '', description: '' });
         fetchTasks();
       }
     } catch (error) {
@@ -90,9 +90,9 @@ const TaskList = () => {
       <form onSubmit={createTask} className="task-form">
         <input
           type="text"
-          placeholder="Task title"
-          value={newTask.title}
-          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          placeholder="Task name"
+          value={newTask.name}
+          onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
           className="task-input"
         />
         <textarea
@@ -111,7 +111,7 @@ const TaskList = () => {
           tasks.map((task) => (
             <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
               <div className="task-content">
-                <h3 className="task-title">{task.title}</h3>
+                <h3 className="task-name">{task.name}</h3>
                 {task.description && <p className="task-description">{task.description}</p>}
               </div>
               <div className="task-actions">

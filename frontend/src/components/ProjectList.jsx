@@ -3,7 +3,7 @@ import './ProjectList.css';
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
-  const [newProject, setNewProject] = useState({ title: '', description: '' });
+  const [newProject, setNewProject] = useState({ name: '', description: '' });
   const [loading, setLoading] = useState(true);
 
   const API_BASE_URL = 'http://localhost:8080/api/projects';
@@ -26,7 +26,7 @@ const ProjectList = () => {
 
   const createProject = async (e) => {
     e.preventDefault();
-    if (!newProject.title.trim()) return;
+    if (!newProject.name.trim()) return;
 
     try {
       const response = await fetch(API_BASE_URL, {
@@ -38,44 +38,11 @@ const ProjectList = () => {
       });
       
       if (response.ok) {
-        setNewProject({ title: '', description: '' });
+        setNewProject({ name: '', description: '' });
         fetchProjects();
       }
     } catch (error) {
       console.error('Error creating project:', error);
-    }
-  };
-
-  const toggleProject = async (id, project) => {
-    try {
-      const updatedProject = { ...project, completed: !project.completed };
-      const response = await fetch(`${API_BASE_URL}/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedProject),
-      });
-      
-      if (response.ok) {
-        fetchProjects();
-      }
-    } catch (error) {
-      console.error('Error updating project:', error);
-    }
-  };
-
-  const deleteProject = async (id) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/${id}`, {
-        method: 'DELETE',
-      });
-      
-      if (response.ok) {
-        fetchProjects();
-      }
-    } catch (error) {
-      console.error('Error deleting project:', error);
     }
   };
 
@@ -90,9 +57,9 @@ const ProjectList = () => {
       <form onSubmit={createProject} className="project-form">
         <input
           type="text"
-          placeholder="Project title"
-          value={newProject.title}
-          onChange={(e) => setNewProject({ ...newProject, title: e.target.value })}
+          placeholder="Project name"
+          value={newProject.name}
+          onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
           className="project-input"
         />
         <textarea
@@ -111,22 +78,8 @@ const ProjectList = () => {
           projects.map((project) => (
             <div key={project.id} className={`project-item ${project.completed ? 'completed' : ''}`}>
               <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
+                <h3 className="project-name">{project.name}</h3>
                 {project.description && <p className="project-description">{project.description}</p>}
-              </div>
-              <div className="project-actions">
-                <button
-                  onClick={() => toggleProject(project.id, project)}
-                  className={`toggle-btn ${project.completed ? 'complete' : 'incomplete'}`}
-                >
-                  {project.completed ? '✓' : '○'}
-                </button>
-                <button
-                  onClick={() => deleteProject(project.id)}
-                  className="delete-btn"
-                >
-                  ✕
-                </button>
               </div>
             </div>
           ))
