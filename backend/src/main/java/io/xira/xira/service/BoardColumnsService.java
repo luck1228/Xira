@@ -21,7 +21,7 @@ public class BoardColumnsService {
     }
 
     public List<BoardColumns> getBoardColumns(Integer id) {
-        return boardColumnsRepository.findByProjectId(id);
+        return boardColumnsRepository.findByProjectIdOrderByPositionAsc(id);
     }
 
     public BoardColumns getBoardColumnById(Integer id) {
