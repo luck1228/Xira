@@ -10,9 +10,8 @@ public class BoardColumns {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    @Column(name = "project_id", nullable = false)
+    private Integer projectId;
 
     @Column(nullable = false)
     private String name;
@@ -24,11 +23,11 @@ public class BoardColumns {
     public BoardColumns() {
     }
 
-    public BoardColumns(Integer id, String name, Integer position, Project project) {
+    public BoardColumns(Integer id, Integer projectId, String name, Integer position) {
         this.id = id;
+        this.projectId = projectId;
         this.name = name;
         this.position = position;
-        this.project = project;
     }
 
     // Getters and Setters
@@ -56,12 +55,12 @@ public class BoardColumns {
         this.position = position;
     }
 
-    public Project getProject() {
-        return project;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
 }

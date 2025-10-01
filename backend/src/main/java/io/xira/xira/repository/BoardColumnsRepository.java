@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface BoardColumnsRepository extends JpaRepository<BoardColumns, Integer>{
 
-    List<BoardColumns> findAllByOrderByCreatedAtDesc();
+    List<BoardColumns> findAllByOrderByProjectIdDesc();
 
 }

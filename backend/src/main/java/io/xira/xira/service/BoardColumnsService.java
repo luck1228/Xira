@@ -17,7 +17,7 @@ public class BoardColumnsService {
     }
 
     public List<BoardColumns> getAllBoardColumns() {
-        return boardColumnsRepository.findAllByOrderByCreatedAtDesc();
+        return boardColumnsRepository.findAllByOrderByProjectIdDesc();
     }
 
     public BoardColumns createBoardColumn(BoardColumnsDTO boardColumnsDTO) {
