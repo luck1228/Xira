@@ -25,6 +25,11 @@ public class BoardColumnsController {
         return boardColumnsService.getAllBoardColumns();
     }
 
+    @GetMapping("/project/{id}")
+    public List<BoardColumns> getBoardColumns(@PathVariable Integer id) {
+        return boardColumnsService.getBoardColumns(id);
+    }
+
     @PostMapping
     public BoardColumns createBoardColumn(@Valid @RequestBody BoardColumnsDTO boardColumnsDTO) {
         return boardColumnsService.createBoardColumn(boardColumnsDTO);

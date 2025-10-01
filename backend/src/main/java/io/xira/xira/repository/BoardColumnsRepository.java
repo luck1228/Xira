@@ -10,5 +10,6 @@ import java.util.List;
 public interface BoardColumnsRepository extends JpaRepository<BoardColumns, Integer>{
 
     List<BoardColumns> findAllByOrderByProjectIdDesc();
+    List<BoardColumns> findByProjectId(Integer projectId);
 
 }

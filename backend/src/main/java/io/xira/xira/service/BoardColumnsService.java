@@ -20,6 +20,15 @@ public class BoardColumnsService {
         return boardColumnsRepository.findAllByOrderByProjectIdDesc();
     }
 
+    public List<BoardColumns> getBoardColumns(Integer id) {
+        return boardColumnsRepository.findByProjectId(id);
+    }
+
+    public BoardColumns getBoardColumnById(Integer id) {
+        return boardColumnsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Board Column not found with id: " + id));
+    }
+
     public BoardColumns createBoardColumn(BoardColumnsDTO boardColumnsDTO) {
         BoardColumns boardColumn = new BoardColumns();
         boardColumn.setProjectId(boardColumnsDTO.getProjectId());
