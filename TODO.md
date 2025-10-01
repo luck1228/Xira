@@ -11,7 +11,6 @@
 - [ ] Implement loading states and error handling
 - [ ] Add form validation
 - [ ] Create additional components (TaskForm, TaskItem)
-- [ ] Add routing with React Router
 
 ## Database & Infrastructure
 - [ ] Set up database seeding for testing
@@ -61,6 +60,7 @@
 - [x] Create Docker configuration for database
 - [x] Add database migrations
 - [x] Configure different environments (dev, prod)
+- [x] Add routing with React Router
 
 ---
 
