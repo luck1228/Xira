@@ -69,3 +69,6 @@
 - Use `- [x]` for completed tasks
 - Organize tasks by categories (Backend, Frontend, etc.)
 - Move completed tasks to the "Completed Tasks" section
+
+docker compose up -d
+npm start
