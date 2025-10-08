@@ -10,10 +10,9 @@ public class BoardColumnsDTO {
     @Column(name = "project_id", nullable = false)
     private Integer projectId;
 
-    @NotBlank(message = "Name is required")
-    @Size(max = 255, message = "Name must be at most 255 characters")
-    @Column(name = "name", nullable = false)
-    private String name;
+    @NotBlank(message = "Task ID is required")
+    @Column(name = "task_id", nullable = false)
+    private Integer taskId;
 
     @NotBlank(message = "Position is required")
     @Column(name = "position", nullable = false)
@@ -27,12 +26,12 @@ public class BoardColumnsDTO {
         this.projectId = projectId;
     }
 
-    public String getName() {
-        return name;
+    public Integer getTaskId() {
+        return taskId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
     }
 
     public Integer getPosition() {

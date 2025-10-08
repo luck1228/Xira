@@ -13,8 +13,8 @@ public class BoardColumns {
     @Column(name = "project_id", nullable = false)
     private Integer projectId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "task_id", nullable = false)
+    private Integer taskId;
 
     @Column(name = "position", nullable = false)
     private Integer position;
@@ -23,10 +23,10 @@ public class BoardColumns {
     public BoardColumns() {
     }
 
-    public BoardColumns(Integer id, Integer projectId, String name, Integer position) {
+    public BoardColumns(Integer id, Integer projectId, Integer taskId, Integer position) {
         this.id = id;
         this.projectId = projectId;
-        this.name = name;
+        this.taskId = taskId;
         this.position = position;
     }
 
@@ -39,12 +39,12 @@ public class BoardColumns {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getTaskId() {
+        return taskId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTaskId(Integer taskId) {
+        this.taskId = taskId;
     }
 
     public Integer getPosition() {

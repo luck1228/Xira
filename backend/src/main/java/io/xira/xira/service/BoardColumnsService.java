@@ -32,7 +32,7 @@ public class BoardColumnsService {
     public BoardColumns createBoardColumn(BoardColumnsDTO boardColumnsDTO) {
         BoardColumns boardColumn = new BoardColumns();
         boardColumn.setProjectId(boardColumnsDTO.getProjectId());
-        boardColumn.setName(boardColumnsDTO.getName());
+        boardColumn.setTaskId(boardColumnsDTO.getTaskId());
         boardColumn.setPosition(boardColumnsDTO.getPosition());
         return boardColumnsRepository.save(boardColumn);
     }
@@ -41,7 +41,7 @@ public class BoardColumnsService {
         BoardColumns boardColumn = boardColumnsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Board Column not found with id: " + id));
 
-        boardColumn.setName(boardColumnDetails.getName());
+        boardColumn.setTaskId(boardColumnDetails.getTaskId());
         boardColumn.setPosition(boardColumnDetails.getPosition());
 
         return boardColumnsRepository.save(boardColumn);
