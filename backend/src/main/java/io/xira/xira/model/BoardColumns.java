@@ -10,23 +10,25 @@ public class BoardColumns {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "project_id", nullable = false)
-    private Integer projectId;
-
-    @Column(name = "task_id", nullable = false)
-    private Integer taskId;
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
+    private Project project;
 
     @Column(name = "position", nullable = false)
     private Integer position;
+
+    @OneToOne
+    @JoinColumn(name = "task_id", referencedColumnName = "id", nullable = false)
+    private Task task;
 
     // Constructors
     public BoardColumns() {
     }
 
-    public BoardColumns(Integer id, Integer projectId, Integer taskId, Integer position) {
+    public BoardColumns(Integer id, Project project, Task task, Integer position) {
         this.id = id;
-        this.projectId = projectId;
-        this.taskId = taskId;
+        this.project = project;
+        this.task = task;
         this.position = position;
     }
 
@@ -39,12 +41,12 @@ public class BoardColumns {
         this.id = id;
     }
 
-    public Integer getTaskId() {
-        return taskId;
+    public Task getTask() {
+        return task;
     }
 
-    public void setTaskId(Integer taskId) {
-        this.taskId = taskId;
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     public Integer getPosition() {
@@ -55,12 +57,12 @@ public class BoardColumns {
         this.position = position;
     }
 
-    public Integer getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(Integer projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
 }
