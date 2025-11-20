@@ -25,28 +25,31 @@ const KanbanBoard = () => {
     };
 
     return (
-        <>     <div className="p-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-start">
-                <h2 className="text-lg font-bold">Kanban Board</h2>
-                <input
-                    type="text"
-                    placeholder="Search tasks..."
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                className="border border-gray-300 rounded-md p-2 w-[70%] max-w-[22.4rem] focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <>  <div className="p-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-start dark:bg-gray-800">
+            <h2 className="text-lg font-bold text-black dark:text-white text-2xl">
+                Kanban Board
+            </h2>
+            <input
+                type="text"
+                placeholder="Search tasks..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+            className="border border-gray-300 rounded-md p-2 w-[70%] max-w-[22.4rem] focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
             </div>
                 <div className="flex gap-4">
-
                 {Object.keys(columnTitle).map((title, index) => (
-                    <div key={index} className="w-1/3 bg-gray-100 p-2 rounded shadow flex flex-col h-full">
+                    <div key={index} className="w-1/3 bg-gray-100 p-2 rounded shadow flex flex-col h-full dark:bg-gray-700">
                         {/* Column Title */}
-                        <h2 className="text-lg font-bold mb-2 text-center sticky top-0 bg-gray-100 z-10">{title}</h2>
+                        <h2 className="text-lg font-bold mb-2 text-center sticky top-0 bg-gray-100 z-10 dark:bg-gray-700 dark:text-white">{title}</h2>
 
                         {/* Column tasks will go here */}
                         <div className="flex-1 flex flex-col gap-2 overflow-y-auto">
                             {boardColumns.filter((column) => column.position === index + 1 && (column.name.toLowerCase().includes(searchText.toLowerCase()) || column.description.toLowerCase().includes(searchText.toLowerCase()))).map((column) => (
-                                <div key={column.id} className="bg-white p-2 rounded shadow">
+                                <div key={column.id} className="text-lg font-bold bg-white p-2 rounded shadow dark:bg-gray-800 dark:text-white">
                                     {column.name}
-                                    {column.description}
+                                    <div className="text-sm font-normal text-gray-500 dark:text-gray-400 mt-1">
+                                        {column.description}
+                                    </div>
                                 </div>
                             ))}
                         </div>
