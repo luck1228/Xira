@@ -1,31 +1,47 @@
 import React from 'react';
 import './Sidebar.css';
-import DarkModeToggle from "./DarkModeToggle";
-
-const toggleDarkMode = () => {
-    const html = document.documentElement;
-    html.classList.toggle("dark");
-
-    if (html.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-    } else {
-        localStorage.setItem("theme", "light");
-    }
-};
+import { useNavigate } from "react-router-dom";
 
 
-export default function Sidebar() {
+const Sidebar = () => {
+
+    const [projects, setProjects] = React.useState([]);
+    const navigate = useNavigate();
+    
+    const API_BASE_URL = 'http://localhost:8080/api/projects';
+
+    React.useEffect(() => {
+        fetchProjectIds();
+    }, []);
+
+    const fetchProjectIds = async () => {
+        try {
+            const response = await fetch(API_BASE_URL);
+            const data = await response.json();
+            setProjects(data.map(project => ({ name: project.name, id: project.id })));
+        } catch (error) {
+            console.error('Error fetching project IDs:', error);
+        }
+    };
+
     return (
-        <div className="p-4 bg-gray-200 h-full dark:bg-gray-900 text-black dark:text-white">
-            <div>
-                <DarkModeToggle />
-            </div>
-            <h2 className="text-xl font-bold">Projects</h2>
-            <ul className="pl-2 space-y-1">
-                <li>Project 1</li>
-                <li>Project 2</li>
+        <div className="text-left p-0 bg-gray-200 h-full dark:bg-gray-700 text-black dark:text-white">
+            <h2 className="text-left text-xl px-4 font-bold py-4">Projects</h2>
+
+            <ul className="text-left space-y-0 flex flex-col bg">
+                {projects.map((project) => (
+                    <button
+                        key={project.id}
+                        onClick={() => navigate(`/project/${project.id}`)}
+                        className="block w-full px-4 py-1 text-left bg-gray-200 text-black hover:bg-gray-400 transition dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
+                    >
+                        {project.name}
+                    </button>
+                ))}
             </ul>
             
         </div>
     );
 }
+
+export default Sidebar;

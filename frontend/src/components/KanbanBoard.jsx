@@ -1,11 +1,12 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import './KanbanBoard.css';
+import DarkModeToggle from "./DarkModeToggle";
 
 const KanbanBoard = () => {
     const { projectId } = useParams(); // Get projectId from URL
     const [boardColumns, setBoardColumns] = React.useState([]);
-    const [columnTitle] = React.useState({ "TO DO": "", "IN PROGRESS": "", "DONE": "" }); // Static titles for columns
+    const [columnTitle] = React.useState({ "To do": "", "In Progress": "", "Done": "" }); // Static titles for columns
     const [searchText, setSearchText] = React.useState("");
 
     const API_BASE_URL = 'http://localhost:8080/api/board-columns';
@@ -25,10 +26,13 @@ const KanbanBoard = () => {
     };
 
     return (
-        <>  <div className="p-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-start dark:bg-gray-800">
+        <>  <div className="p-0 pt-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-start dark:bg-gray-800">
+            <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-black dark:text-white text-2xl">
                 Kanban Board
             </h2>
+                <DarkModeToggle />
+            </div>
             <input
                 type="text"
                 placeholder="Search tasks..."
