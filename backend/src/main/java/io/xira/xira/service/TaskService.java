@@ -30,7 +30,7 @@ public class TaskService {
         task.setName(dto.getName());
         task.setDescription(dto.getDescription());
         task.setProjectId(dto.getProjectId());
-        task.setAssigneeId(dto.getAssigneeId());
+        //task.setAssigneeId(dto.getAssigneeId());
 
         // Defaults for optional fields
         task.setStatus(dto.getStatus() != null ? dto.getStatus() : "TO_DO");

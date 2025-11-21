@@ -2,12 +2,14 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import './KanbanBoard.css';
 import DarkModeToggle from "./DarkModeToggle";
+import AddTask from './AddTask';
 
 const KanbanBoard = () => {
-    const { projectId } = useParams(); // Get projectId from URL
+    const { projectId } = useParams();
     const [boardColumns, setBoardColumns] = React.useState([]);
-    const [columnTitle] = React.useState({ "To do": "", "In Progress": "", "Done": "" }); // Static titles for columns
+    const [columnTitle] = React.useState({ "To do": "", "In Progress": "", "Done": "" });
     const [searchText, setSearchText] = React.useState("");
+    const [showAddTask, setShowAddTask] = React.useState(false);
 
     const API_BASE_URL = 'http://localhost:8080/api/board-columns';
 
@@ -26,21 +28,30 @@ const KanbanBoard = () => {
     };
 
     return (
-        <>  <div className="p-0 pt-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-start dark:bg-gray-800">
-            <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-black dark:text-white text-2xl">
-                Kanban Board
-            </h2>
-                <DarkModeToggle />
+        <>  <div className="p-0 pt-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-between dark:bg-gray-800">
+                <div className="flex items-center justify-between mb-4 pr-2">
+                    <h2 className="text-lg font-bold text-black dark:text-white text-2xl">
+                        Kanban Board
+                    </h2>
+                        <DarkModeToggle />
+                </div>
+                <div className='flex items-center justify-between mb-4 pr-2'>
+                    <input
+                        type="text"
+                        placeholder="Search tasks..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        className="border border-gray-300 rounded-md p-2 w-[70%] max-w-[22.4rem] focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white" 
+                    />
+                    <button
+                        className="w-[10rem] ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        onClick={() => setShowAddTask(true)}
+                    >
+                        Add task
+                    </button>
+                </div>
             </div>
-            <input
-                type="text"
-                placeholder="Search tasks..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-            className="border border-gray-300 rounded-md p-2 w-[70%] max-w-[22.4rem] focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
-            </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 pr-2">
                 {Object.keys(columnTitle).map((title, index) => (
                     <div key={index} className="w-1/3 bg-gray-100 p-2 rounded shadow flex flex-col h-full dark:bg-gray-700">
                         {/* Column Title */}
@@ -59,8 +70,16 @@ const KanbanBoard = () => {
                         </div>
                     </div>
                 ))}
-            </div></>
-
+                </div>
+                <AddTask
+                    isOpen={showAddTask}
+                    onClose={() => setShowAddTask(false)}
+                    projectId={projectId}
+                    onCreated={() => {
+                        fetchBoardColumns(projectId);
+                    }}
+                />
+            </>
     );
 }
 
