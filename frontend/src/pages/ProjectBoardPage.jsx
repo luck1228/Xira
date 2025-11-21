@@ -10,7 +10,7 @@ export default function ProjectBoardPage() {
             </div>
 
             {/* Board 5/6 width */}
-            <div className="w-11/12 min-w-[40rem] pl-2 bg-white dark:bg-gray-800 p-0 overflow-auto">
+            <div className="w-11/12 min-w-[40rem] bg-white dark:bg-gray-800 p-0 overflow-auto">
                 <KanbanBoard />
             </div>
         </div>

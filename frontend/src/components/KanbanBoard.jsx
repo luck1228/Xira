@@ -28,7 +28,7 @@ const KanbanBoard = () => {
     };
 
     return (
-        <>  <div className="p-0 pt-4 bg-white shadow-md rounded-md mb-4 flex-col items-center justify-between dark:bg-gray-800">
+        <>  <div className="pl-2 pt-4 pb-[1px] bg-white shadow-md rounded-md mb-4 flex-col items-center justify-between dark:bg-gray-800">
                 <div className="flex items-center justify-between mb-4 pr-2">
                     <h2 className="text-lg font-bold text-black dark:text-white text-2xl">
                         Kanban Board
@@ -51,7 +51,7 @@ const KanbanBoard = () => {
                     </button>
                 </div>
             </div>
-                <div className="flex gap-4 pr-2">
+                <div className="flex gap-4 pr-2 pl-2">
                 {Object.keys(columnTitle).map((title, index) => (
                     <div key={index} className="w-1/3 bg-gray-100 p-2 rounded shadow flex flex-col h-full dark:bg-gray-700">
                         {/* Column Title */}
