@@ -34,12 +34,12 @@ public class BoardColumnsService {
 
         return rows.stream().map(r ->
             new BoardColumnTaskDTO(
-                (Integer) r[0],   // task id
-                (String)  r[1],   // name
-                (String)  r[2],   // description
-                (String)  r[3],   // status
-                (Integer) r[4],   // position
-                (Integer) r[5]    // project_id
+                ((Number) r[0]).intValue(), // task id
+                (String) r[1], // name
+                (String) r[2], // description
+                (String) r[3], // status
+                ((Number) r[4]).intValue(), // position
+                ((Number) r[5]).intValue() // project_id
             )
         ).toList();
     }
