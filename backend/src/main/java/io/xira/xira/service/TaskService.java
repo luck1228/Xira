@@ -21,6 +21,11 @@ public class TaskService {
         return taskRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    public Task getTaskById(Integer id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+    }
+
     public Task createTask(Task task) {
         return taskRepository.save(task);
     }
@@ -30,7 +35,9 @@ public class TaskService {
         task.setName(dto.getName());
         task.setDescription(dto.getDescription());
         task.setProjectId(dto.getProjectId());
-        //task.setAssigneeId(dto.getAssigneeId());
+        if (dto.getAssigneeId() != null) {
+            task.setAssigneeId(dto.getAssigneeId());
+        }
 
         // Defaults for optional fields
         task.setStatus(dto.getStatus() != null ? dto.getStatus() : "TO_DO");
@@ -42,12 +49,20 @@ public class TaskService {
     }
 
     public Task updateTask(Integer id, Task taskDetails) {
+        System.out.println("Updating task with ID: " + id);
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
         
         task.setName(taskDetails.getName());
         task.setDescription(taskDetails.getDescription());
-        
+        if (taskDetails.getAssigneeId() != null) {
+            task.setAssigneeId(taskDetails.getAssigneeId());
+        }
+        System.out.println("New status: " + taskDetails.getStatus());
+        if( taskDetails.getStatus() != null) {
+            task.setStatus(taskDetails.getStatus());
+        }
+
         return taskRepository.save(task);
     }
 
