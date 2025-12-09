@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import './KanbanBoard.css';
 import DarkModeToggle from "./DarkModeToggle";
 import AddTask from './AddTask';
+import EditTask from './EditTask';
 
 const KanbanBoard = () => {
     const { projectId } = useParams();
@@ -10,6 +11,8 @@ const KanbanBoard = () => {
     const [columnTitle] = React.useState({ "To do": "", "In Progress": "", "Done": "" });
     const [searchText, setSearchText] = React.useState("");
     const [showAddTask, setShowAddTask] = React.useState(false);
+    const [editTaskId, setEditTaskId] = React.useState(null);
+    const [showEditTask, setShowEditTask] = React.useState(false);
 
     const API_BASE_URL = 'http://localhost:8080/api/board-columns';
 
@@ -24,6 +27,19 @@ const KanbanBoard = () => {
             setBoardColumns(data);
         } catch (error) {
             console.error('Error fetching board columns:', error);
+        }
+    };
+
+    const castTitle = (title) => {
+        switch (title) {
+            case "To do":
+                return "TO_DO";
+            case "In Progress":
+                return "IN_PROGRESS";
+            case "Done":
+                return "DONE";
+            default:
+                return title;
         }
     };
 
@@ -59,8 +75,8 @@ const KanbanBoard = () => {
 
                         {/* Column tasks will go here */}
                         <div className="flex-1 flex flex-col gap-2 overflow-y-auto">
-                            {boardColumns.filter((column) => column.position === index + 1 && (column.name.toLowerCase().includes(searchText.toLowerCase()) || column.description.toLowerCase().includes(searchText.toLowerCase()))).map((column) => (
-                                <div key={column.id} className="text-lg font-bold bg-white p-2 rounded shadow dark:bg-gray-800 dark:text-white">
+                            {boardColumns.filter((column) => column.status === castTitle(title) && (column.name.toLowerCase().includes(searchText.toLowerCase()) || column.description.toLowerCase().includes(searchText.toLowerCase()))).map((column) => (
+                                <div key={column.id} className="text-lg font-bold bg-white p-2 rounded shadow dark:bg-gray-800 dark:text-white" onClick={() => { setEditTaskId(column.id); setShowEditTask(true); }}>
                                     {column.name}
                                     <div className="text-sm font-normal text-gray-500 dark:text-gray-400 mt-1">
                                         {column.description}
@@ -74,6 +90,16 @@ const KanbanBoard = () => {
                 <AddTask
                     isOpen={showAddTask}
                     onClose={() => setShowAddTask(false)}
+                    projectId={projectId}
+                    onCreated={() => {
+                        fetchBoardColumns(projectId);
+                    }}
+                />
+
+                <EditTask
+                    isOpen={showEditTask}
+                    onClose={() => setShowEditTask(false)}
+                    taskId={editTaskId}
                     projectId={projectId}
                     onCreated={() => {
                         fetchBoardColumns(projectId);
