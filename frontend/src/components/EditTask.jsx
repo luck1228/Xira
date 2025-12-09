@@ -2,7 +2,7 @@ import './EditTask.css';
 import { useState, useEffect } from 'react';
 
 const EditTask = ({ isOpen, onClose, projectId, onCreated, taskId }) => {
-  const [newTask, editNewTask] = useState({ name: '', description: '', assigneeId: '' });
+  const [newTask, editNewTask] = useState({ name: '', description: '', assigneeId: '' ,status: ''});
 
     const API_BASE_URL = 'http://localhost:8080/api/tasks';
 
