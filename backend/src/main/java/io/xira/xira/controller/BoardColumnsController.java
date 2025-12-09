@@ -30,8 +30,8 @@ public class BoardColumnsController {
     }
 
     @GetMapping("/project/{projectId}")
-    public List<BoardColumnTaskDTO> getColumnsWithTasks(@PathVariable Integer projectId) {
-        return boardColumnsRepository.findColumnsWithTasksByProjectId(projectId);
+    public List<BoardColumnTaskDTO> getProjectColumns(@PathVariable Integer projectId) {
+        return boardColumnsService.getColumnsWithTasks(projectId);
     }
 
     @PostMapping

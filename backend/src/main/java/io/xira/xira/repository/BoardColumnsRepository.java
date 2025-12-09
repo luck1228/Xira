@@ -12,18 +12,20 @@ import java.util.List;
 @Repository
 public interface BoardColumnsRepository extends JpaRepository<BoardColumns, Integer>{
 
-    @Query("""
-                SELECT new io.xira.xira.dto.BoardColumnTaskDTO(
-                    b.id,
-                    b.task.name,
-                    b.task.description,
-                    b.position
-                )
-                FROM BoardColumns b
-                WHERE b.project.id = :projectId
-                ORDER BY b.position
-            """)
-    List<BoardColumnTaskDTO> findColumnsWithTasksByProjectId(@Param("projectId") Integer projectId);
+    @Query(value = """
+                SELECT
+                    p2.id AS id,
+                    p2.name AS name,
+                    p2.description AS description,
+                    p2.status AS status,
+                    p1.position AS position,
+                    p1.project_id AS projectId
+                FROM board_columns p1
+                JOIN tasks p2 ON p2.id = p1.task_id
+                WHERE p1.project_id = :projectId
+                ORDER BY p2.status DESC, p1.position ASC
+            """, nativeQuery = true)
+    List<Object[]> findColumnsWithTasks(@Param("projectId") Integer projectId);
 
     List<BoardColumns> findAllByOrderByProjectIdDesc();
     List<BoardColumns> findByProjectIdOrderByPositionAsc(Integer projectId);

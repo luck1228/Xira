@@ -1,5 +1,6 @@
 package io.xira.xira.service;
 
+import io.xira.xira.dto.BoardColumnTaskDTO;
 import io.xira.xira.dto.BoardColumnsDTO;
 import io.xira.xira.model.BoardColumns;
 import io.xira.xira.model.Project;
@@ -26,6 +27,21 @@ public class BoardColumnsService {
 
     public BoardColumnsService(BoardColumnsRepository boardColumnsRepository) {
         this.boardColumnsRepository = boardColumnsRepository;
+    }
+
+    public List<BoardColumnTaskDTO> getColumnsWithTasks(Integer projectId) {
+        List<Object[]> rows = boardColumnsRepository.findColumnsWithTasks(projectId);
+
+        return rows.stream().map(r ->
+            new BoardColumnTaskDTO(
+                (Integer) r[0],   // task id
+                (String)  r[1],   // name
+                (String)  r[2],   // description
+                (String)  r[3],   // status
+                (Integer) r[4],   // position
+                (Integer) r[5]    // project_id
+            )
+        ).toList();
     }
 
     public List<BoardColumns> getAllBoardColumns() {
